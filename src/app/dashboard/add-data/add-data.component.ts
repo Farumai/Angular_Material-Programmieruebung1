@@ -5,10 +5,15 @@ import { StoreService } from '../../shared/store.service';
 import { BackendService } from '../../shared/backend.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 @Component({
   selector: 'app-add-data',
   standalone: true,  // standalone-Komponente
-  imports: [SharedModule, MatCheckboxModule, MatInputModule],  // Import der benötigten Module
+  imports: [SharedModule, MatCheckboxModule, MatInputModule, MatDatepickerModule,
+    MatNativeDateModule, MatSelectModule
+  ],  // Import der benötigten Module
   templateUrl: './add-data.component.html',
   styleUrls: ['./add-data.component.css']
 })
@@ -39,7 +44,14 @@ export class AddDataComponent implements OnInit {
 
   onSubmit() {
     if(this.registrationForm.valid) {
-      this.backendService.addRegistration(this.registrationForm.value, this.storeService.currentPage);
+      const formattedDate = new Date(this.registrationForm.value.birthdate).toISOString().split('T')[0];
+
+      const formData = {
+        ...this.registrationForm.value,
+        birthdate: formattedDate // Store formatted birthdate
+      };
+
+      this.backendService.addRegistration(formData, this.storeService.currentPage);
     }
   }
 }

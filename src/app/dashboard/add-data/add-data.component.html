@@ -1,13 +1,39 @@
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <h2>Zum Kurs anmelden!</h2>
-    <input placeholder="Name" type="input" formControlName="name"><br />
-    <input placeholder="Geburtsdatum" type="date" formControlName="birthdate">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Enter your name" formControlName="name" required>
+        <mat-error *ngIf="registrationForm.get('name')?.hasError('required')">
+          Name ist erforderlich
+        </mat-error>
+    </mat-form-field>
     <br />
 
-    <select formControlName="courseId">
-        <option value="" disabled>Bitte auswählen</option>
-        <option *ngFor="let course of storeService.courses" [ngValue]="course.id">{{course.name}}, {{course.instructor}}</option>
-    </select>
+    <mat-form-field appearance="fill">
+        <mat-label>Geburtsdatum</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birthdate" required>
+        <mat-hint>MM/TT/JJJJ</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="registrationForm.get('birthdate')?.hasError('required')">
+            Geburtsdatum ist erforderlich
+        </mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="fill">
+        <mat-label>Kurs</mat-label>
+        <mat-select formControlName="courseId" required>
+          <mat-option value="" disabled>Bitte auswählen</mat-option>
+          <mat-option *ngFor="let course of storeService.courses" [value]="course.id">
+            {{ course.name }}, {{ course.instructor }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="registrationForm.get('courseId')?.hasError('required')">
+            Bitte wählen Sie einen Kurs
+        </mat-error>
+    </mat-form-field>
     <br />
 
     <mat-checkbox formControlName="subscribeNewsletter">
@@ -27,5 +53,5 @@
     </mat-form-field>
     <br />
 
-    <button type="submit">Erfassen</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="registrationForm.invalid">Erfassen</button>
 </form>
