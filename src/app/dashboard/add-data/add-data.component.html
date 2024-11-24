@@ -1,11 +1,31 @@
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <h2>Zum Kurs anmelden!</h2>
     <input placeholder="Name" type="input" formControlName="name"><br />
-    <input placeholder="Geburtsdatum" type="date" formControlName="birthdate"><br />
+    <input placeholder="Geburtsdatum" type="date" formControlName="birthdate">
+    <br />
+
     <select formControlName="courseId">
         <option value="" disabled>Bitte auswählen</option>
         <option *ngFor="let course of storeService.courses" [ngValue]="course.id">{{course.name}}, {{course.instructor}}</option>
     </select>
+    <br />
+
+    <mat-checkbox formControlName="subscribeNewsletter">
+        Anmeldung zum Newsletter für neue Kursangebote
+    </mat-checkbox>
+    <br />
+
+    <mat-form-field appearance="fill" *ngIf="registrationForm.get('subscribeNewsletter')?.value">
+        <mat-label>E-mail</mat-label>
+        <input matInput type="email" placeholder="Email" formControlName="email">
+        <mat-error *ngIf="registrationForm.get('email')?.hasError('required')">
+            E-Mail ist für die Anmeldung erforderlich
+        </mat-error>
+        <mat-error *ngIf="registrationForm.get('email')?.hasError('email')">
+            Bitte geben Sie eine gültige E-Mail Adresse ein
+        </mat-error>
+    </mat-form-field>
+    <br />
 
     <button type="submit">Erfassen</button>
 </form>
