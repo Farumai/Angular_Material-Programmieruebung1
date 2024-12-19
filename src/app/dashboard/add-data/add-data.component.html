@@ -1,7 +1,7 @@
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <h2>Zum Kurs anmelden!</h2>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="inputField">
         <mat-label>Name</mat-label>
         <input matInput placeholder="Enter your name" formControlName="name" required>
         <mat-error *ngIf="registrationForm.get('name')?.hasError('required')">
@@ -10,7 +10,7 @@
     </mat-form-field>
     <br />
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="inputField">
         <mat-label>Geburtsdatum</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="birthdate" required>
         <mat-hint>MM/TT/JJJJ</mat-hint>
@@ -22,7 +22,7 @@
     </mat-form-field>
     <br />
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="inputField">
         <mat-label>Kurs</mat-label>
         <mat-select formControlName="courseId" required>
           <mat-option value="" disabled>Bitte auswählen</mat-option>
@@ -41,7 +41,7 @@
     </mat-checkbox>
     <br />
 
-    <mat-form-field appearance="fill" *ngIf="registrationForm.get('subscribeNewsletter')?.value">
+    <mat-form-field appearance="fill" *ngIf="registrationForm.get('subscribeNewsletter')?.value" class="inputField">
         <mat-label>E-mail</mat-label>
         <input matInput type="email" placeholder="Email" formControlName="email">
         <mat-error *ngIf="registrationForm.get('email')?.hasError('required')">
