@@ -1,0 +1,36 @@
+form {
+    padding: 2em;
+    margin: auto;
+    max-width: 600px;
+    background-color: rgb(241, 241, 241);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: stretch;
+    border-radius: 10px;
+}
+
+h2 {
+    font-weight: 700;
+    color: rgb(56, 203, 201);
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.inputField {
+    color: #000a;
+    border: none;
+    width: 100%;
+    background-color: rgb(218, 255, 238);
+}
+
+button {
+    margin: 2em auto 1em;
+    padding: 0.7em 3em;
+    border: none;
+    background-color: rgb(56, 203, 201);
+    color: white;
+    border-radius: 50px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}

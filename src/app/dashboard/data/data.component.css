@@ -1,3 +1,23 @@
 button.active {
     background-color: orange;
 }
+
+.row {
+    height: 15px;
+    display: flex;
+    align-items: center;
+}
+  
+.table-responsive {
+    margin-bottom: 20px;
+}
+
+.table th, 
+.table td {
+  vertical-align: middle;
+  padding: 10px;
+}
+
+.container {
+    padding:  0 15px;
+}

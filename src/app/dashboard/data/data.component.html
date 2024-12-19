@@ -1,46 +1,60 @@
-<table>
-    <thead>
-        <tr>
-            <th>Kurs</th>
-            <th>Veranstaltungsort</th>
-            <th>Adresse des Veranstaltungsortes</th>
-            <th>Öffentlich erreichbar?</th>
-            <th>Kursleiter</th>
-            <th>Alle Termine</th>
-          </tr>
-    </thead>
-      <tbody>
-        <tr *ngFor="let course of storeService.courses">
-            <td>{{course.name}}</td>
-            <td>{{course.eventLocation.name}}</td>
-            <td>{{course.eventLocation.address}}</td>
-            <td>{{course.eventLocation.venueByPublicTansport == true ? "Ja" : "Nein"}}</td>
-            <td>{{course.instructor}}</td>
-            <td>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      <div class="table-responsive mb-4">
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>Kurs</th>
+              <th>Veranstaltungsort</th>
+              <th>Adresse des Veranstaltungsortes</th>
+              <th>Öffentlich erreichbar?</th>
+              <th>Kursleiter</th>
+              <th>Alle Termine</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let course of storeService.courses">
+              <td>{{course.name}}</td>
+              <td>{{course.eventLocation.name}}</td>
+              <td>{{course.eventLocation.address}}</td>
+              <td>{{course.eventLocation.venueByPublicTansport == true ? "Ja" : "Nein"}}</td>
+              <td>{{course.instructor}}</td>
+              <td>
                 <ul>
-                    <li *ngFor="let date of course.dates">
-                        <span>{{date.begin | date:"MMM dd, yyyy 'um' hh:mm a" }}</span> - <span>{{date.end | date:"MMM dd, yyyy 'um' hh:mm a"}}</span>
-                    </li>
+                  <li *ngFor="let date of course.dates">
+                    <span>{{date.begin | date:"MMM dd, yyyy 'um' hh:mm a" }}</span> - 
+                    <span>{{date.end | date:"MMM dd, yyyy 'um' hh:mm a"}}</span>
+                  </li>
                 </ul>
-            </td>
-        </tr>
-      </tbody>
-</table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Geburtsdatum</th>
-            <th>Kurs</th>
-          </tr>
-    </thead>
-      <tbody>
-        <tr *ngFor="let registration of storeService.registrations">
-            <td>{{registration.name}}</td>
-            <td>{{registration.birthdate}}</td>
-            <td>{{registration.course.name}}</td>
-        </tr>
-      </tbody>
-</table>
-<button [ngClass]="page == storeService.currentPage ? 'active' : ''" (click)="selectPage(page)" type="button" *ngFor="let page of returnAllPages()">{{page}}</button>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Geburtsdatum</th>
+              <th>Kurs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let registration of storeService.registrations">
+              <td>{{registration.name}}</td>
+              <td>{{registration.birthdate}}</td>
+              <td>{{registration.course.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-center mt-4">
+        <button [ngClass]="page == storeService.currentPage ? 'active' : ''" (click)="selectPage(page)" type="button" *ngFor="let page of returnAllPages()">{{page}}</button>
+      </div>
+    </div>
+  </div>
+</div>
