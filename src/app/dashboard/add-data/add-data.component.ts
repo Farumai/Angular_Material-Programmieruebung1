@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-add-data',
   standalone: true,  // standalone-Komponente
@@ -18,13 +19,15 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrls: ['./add-data.component.css']
 })
 export class AddDataComponent implements OnInit {
-  constructor(private formbuilder: FormBuilder, public storeService: StoreService, private backendService: BackendService) {
+  constructor(private formbuilder: FormBuilder, public storeService: StoreService, private backendService: BackendService,
+    private snackBar: MatSnackBar
+  ) {
   }
   public registrationForm: any;
 
   ngOnInit(): void {
     this.registrationForm = this.formbuilder.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required,Validators.minLength(2), Validators.maxLength(50)]],
       birthdate: [null, Validators.required],
       courseId: ['', Validators.required],
       subscribeNewsletter: [false],
@@ -52,6 +55,7 @@ export class AddDataComponent implements OnInit {
       };
 
       this.backendService.addRegistration(formData, this.storeService.currentPage);
+      this.snackBar.open('Successfully registered!', 'Close', { duration: 3000 });
     }
   }
 }
