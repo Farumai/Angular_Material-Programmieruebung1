@@ -7,3 +7,43 @@ img {
     height: auto;
     max-width: 200px;
 }
+
+.header-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+}
+  
+.header-logo {
+    width: 85px; 
+    height: auto;
+    margin-right: 16px; 
+}
+  
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: #673ab7;
+    background-color: rgb(218, 255, 238);
+    text-transform: none;
+}
+
+.menu-button {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+  
+.menu-button mat-icon {
+    margin-right: 8px; 
+    font-size: 25px;   
+}
