@@ -1,5 +1,5 @@
 button.active {
-    background-color: orange;
+    background-color: rgb(198, 246, 255);
 }
 
 .row {
@@ -17,8 +17,31 @@ button.active {
 .table td {
   vertical-align: middle;
   padding: 10px;
+  white-space: nowrap;
 }
 
 .container {
     padding:  0 15px;
+}
+
+button {
+    background-color: white;
+    color: #673ab7;
+    border: 1px solid #673ab7;
+    margin: 0 5px;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mat-progress-spinner {
+    margin: auto;
 }

@@ -7,6 +7,15 @@
         <mat-error *ngIf="registrationForm.get('name')?.hasError('required')">
           Name ist erforderlich
         </mat-error>
+        <mat-error *ngIf="registrationForm.get('name')?.hasError('minlength')">
+          Der Name muss mindestens 2 Zeichen lang sein.
+        </mat-error>
+        <mat-error *ngIf="registrationForm.get('name')?.hasError('maxlength')">
+          Der Name darf maximal 50 Zeichen lang sein.
+        </mat-error>
+        <mat-error *ngIf="registrationForm.get('name')?.hasError('pattern')">
+          Der Name muss mit einem Großbuchstaben beginnen und darf nur Buchstaben und Leerzeichen enthalten.
+        </mat-error>
     </mat-form-field>
     <br />
 
@@ -18,6 +27,12 @@
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="registrationForm.get('birthdate')?.hasError('required')">
             Geburtsdatum ist erforderlich
+        </mat-error>
+        <mat-error *ngIf="registrationForm.get('birthdate')?.hasError('invalidDate')">
+          Geburtsdatum muss in der Vergangenheit liegen.
+        </mat-error>
+        <mat-error *ngIf="registrationForm.get('birthdate')?.hasError('underage')">
+          Sie müssen mindestens 18 Jahre alt sein.
         </mat-error>
     </mat-form-field>
     <br />

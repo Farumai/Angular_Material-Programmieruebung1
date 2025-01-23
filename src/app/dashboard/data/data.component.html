@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-12 col-lg-10">
       <div class="table-responsive mb-4">
-        <table class="table table-bordered">
+        <table class="table table-bordered text-center">
           <thead class="thead-dark">
             <tr>
               <th>Kurs</th>
@@ -15,16 +15,16 @@
           </thead>
           <tbody>
             <tr *ngFor="let course of storeService.courses">
-              <td>{{course.name}}</td>
-              <td>{{course.eventLocation.name}}</td>
-              <td>{{course.eventLocation.address}}</td>
-              <td>{{course.eventLocation.venueByPublicTansport == true ? "Ja" : "Nein"}}</td>
-              <td>{{course.instructor}}</td>
+              <td>{{ course.name }}</td>
+              <td>{{ course.eventLocation.name }}</td>
+              <td>{{ course.eventLocation.address }}</td>
+              <td>{{ course.eventLocation.venueByPublicTansport == true ? "Ja" : "Nein" }}</td>
+              <td>{{ course.instructor }}</td>
               <td>
-                <ul>
+                <ul class="list-unstyled mb-0">
                   <li *ngFor="let date of course.dates">
-                    <span>{{date.begin | date:"MMM dd, yyyy 'um' hh:mm a" }}</span> - 
-                    <span>{{date.end | date:"MMM dd, yyyy 'um' hh:mm a"}}</span>
+                    <span>{{ date.begin | date: "MMM dd, yyyy 'um' hh:mm a" }}</span> - 
+                    <span>{{ date.end | date: "MMM dd, yyyy 'um' hh:mm a" }}</span>
                   </li>
                 </ul>
               </td>
@@ -34,27 +34,59 @@
       </div>
 
       <div class="table-responsive mb-4">
-        <table class="table table-bordered">
-          <thead class="thead-light" >
+        <table class="table table-bordered text-center">
+          <thead class="thead-light">
             <tr>
               <th>Name</th>
               <th>Geburtsdatum</th>
               <th>Kurs</th>
+              <th>
+                Anmeldedatum
+                <div>
+                  <button mat-button 
+                          color="primary" 
+                          [ngClass]="{'active': activeSort === 'asc'}" 
+                          (click)="sortRegistrations('asc')">
+                    <mat-icon>arrow_upward</mat-icon> Asc
+                  </button>
+                  <button mat-button 
+                          color="primary"
+                          [ngClass]="{'active': activeSort === 'desc'}" 
+                          (click)="sortRegistrations('desc')">
+                    <mat-icon>arrow_downward</mat-icon> Desc
+                  </button>
+                </div>
+              </th>
+              <th> - </th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let registration of storeService.registrations">
-              <td>{{registration.name}}</td>
-              <td>{{registration.birthdate}}</td>
-              <td>{{registration.course.name}}</td>
+              <td *ngIf="registration.isDeleting" colspan="6" class="text-center">
+                <div>
+                  <mat-progress-spinner mode="indeterminate" diameter="30"></mat-progress-spinner>
+                </div>
+              </td>
+              <ng-container *ngIf="!registration.isDeleting">
+                <td>{{ registration.name }}</td>
+                <td>{{ registration.birthdate }}</td>
+                <td>{{ registration.course.name }}</td>
+                <td>{{ registration.registrationDate | date: 'dd.MM.yyyy' }}</td>
+                <td>
+                  <button mat-raised-button color="warn" (click)="cancelRegistration(registration)">
+                    Abmelden
+                  </button>
+                </td>
+              </ng-container>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="d-flex justify-content-center mt-4">
-        <button [ngClass]="page == storeService.currentPage ? 'active' : ''" (click)="selectPage(page)" type="button" *ngFor="let page of returnAllPages()">{{page}}</button>
+        <mat-paginator [length]="storeService.registrationTotalCount" [pageSize]="2" (page)="selectPage($event)"></mat-paginator>
       </div>
     </div>
   </div>
 </div>
+

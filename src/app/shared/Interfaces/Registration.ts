@@ -6,4 +6,6 @@ export interface Registration {
     birthdate: string,
     course: Course,
     courseId: number
+    registrationDate: string;
+    isDeleting?: boolean;
   }

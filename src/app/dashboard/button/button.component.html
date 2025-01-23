@@ -1,1 +1,6 @@
-<button (click)="buttonClicked()">{{showForm ? "Formular schließen": 'Formular öffnen'}}</button>
+<div class="toggle-button-container">
+    <button mat-raised-button color="accent" class="toggle-button" (click)="buttonClicked()">
+      {{ showForm ? "Anmeldungsformular schließen" : "Anmeldungsformular öffnen" }}
+      <mat-icon>{{ showForm ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+    </button>
+</div>

@@ -74,18 +74,21 @@
       "id": 1,
       "name": "Testuser",
       "birthdate": "2024-11-13",
-      "courseId": "_iL775j"
+      "courseId": "_iL775j",
+      "registrationDate": "2025-01-20T03:15:41.385Z"
     },
     {
       "name": "Julia Schabasser",
       "courseId": "_iL775i",
       "birthdate": "1995-02-23",
+      "registrationDate": "2025-01-21T03:15:41.385Z",
       "id": 2
     },
     {
       "name": "Julia Schabasser",
       "courseId": "_iL775a",
       "birthdate": "1995-02-23",
+      "registrationDate": "2025-01-22T03:10:41.385Z",
       "id": 3
     }
   ]
